@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}
+Cheat Info
+{% endblock %}
+{% block main %}
+<script src="/static/cheat.js"></script>
+<p id="cheater_list">You played the following players in {{ month }}/{{ year }} who have since been banned for fair play violations!</p>
+<table id="cheat_table"><tr><th>Opponent</th><th>See the games</th><th>Is same username used on Lichess?</th><th>Lichess Link</th><th>Last Active on LiChess</th></tr>
+{% for cheater in cheaters %}
+<tr><td><p class="cheatholder">{{ cheater.player_id }}</p></td><td><a class="cheatlink" target ="_tab" href="{{ cheater.gameurl }}">Your game(s) vs {{ cheater.player_id }}</a></td><td class="lichess" value="{{ cheater.lichess }}">{{ cheater.lichess }}</td><td><a class="lichess-cheatlink" target="_tab" href="{{ cheater.lichessurl }}">See them on LiChess</a></td><td class="lichess-active">{{ cheater.lichessactive }}</td>
+</tr>
+{% endfor %}
+</table>
+<div><a> </a></div>
+<p><a href="/">Check other months</a> or <a href="/cheatinfo">view an archive of the results of your previous searches.</a></p>
+{% endblock %}
+
+

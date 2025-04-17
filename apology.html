@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block title %}
+Apology
+{% endblock %}
+{% block main %}
+  <!-- https://memegen.link/ -->
+    <!-- https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2d0Z2F2M3Z1Nmt6a21leHpkOXJhcG1jNjVkdGYzbno4anE0NzBkNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/elfUaLz0YKvDPoxMJb/giphy.gif -->
+    <img alt="{{ top }}" class="border img-fluid" src="https://api.memegen.link/images/custom/{{ top | urlencode }}/{{ bottom | urlencode }}.gif?background=https://bit.ly/4c3wIKp&width=400" title="{{ top }}">
+{% endblock %}
+

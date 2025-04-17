@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}
+<p>Archives</p>
+{% endblock %}
+{% block main %}
+<div class="bigYearMonthDiv" id ="yearMonthDiv">
+    <p>{{ count }}</p>
+    {% for d in archive_objects %}
+    <div class="yearMonthDiv" name = "{{ d }}">{{ d.inquiry_date }}
+        <p class = "cheatArchiveData" name="{{ d }}">
+            Daily: {{ d.cheaters_daily[0] }}</p>
+            <button>Update Daily info</button>
+            <p>Last updated: N/A</p>
+        </p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

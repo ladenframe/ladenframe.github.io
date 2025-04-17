@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% block title %}
+My Tournaments
+{% endblock %}
+{% block main %}
+<h1 id="title" onload="tournamentsLoad()">Welcome to your tournaments page!</h1>
+<form action="/tournaments" method="post">
+<button id="t-fin-button" name="tournaments" type="submit" value="finished">My Tournament Placements</button>
+<button id="t-pro-button" name="tournaments" type="submit" value="in_progress">See current tournaments</button>
+<button id="t-reg-button" name="tournaments" type="submit" value="registered">See registered tournaments</button>
+</form>
+<table id="if-finished" style="display:none">
+  <tr>
+    <th>Name</th>
+    <th>Rules</th>
+    <th>Time Class</th>
+    <th>Rated/Unrated</th>
+    <th>Total Players</th>
+    <th>Wins</th>
+    <th>Draws</th>
+    <th>Losses</th>
+    <th>Points Awarded</th>
+    <th>Placement</th>
+  </tr>
+      {% for data in finished_data %}
+      <tr>
+    <td><a href="{{ data.url }}" target="_tab">{{ data.name }}</a></td>
+    <td>{{ data.rules }}</td>
+    <td class="finished-data">{{ data.time_class }}</td>
+    <td>{{ data.is_rated }}</td>
+    <td>{{ data.total_players }}</td>
+    <td>{{ data.wins }}</td>
+    <td>{{ data.draws }}</td>
+    <td>{{ data.losses }}</td>
+    <td>{{ data.points_awarded }}</td>
+    <td>{{ data.placement }}</td>
+  </tr>
+    {% endfor %}
+    </tr>
+  </table>
+  <table id="if-in-progress" style="display:none">
+    <tr>
+      <th>Name</th>
+      <th>Rules</th>
+      <th>Rated/Unrated</th>
+      <th>Total Players</th>
+      <th>Round</th>
+      <th>Advance</th>
+      <th>Current Score</th>
+      <th>Score of Player to Beat</th>
+      <th>My Games Remaining</th>
+      <th>Opponent Games Remaining</th>
+      <th>Tiebreaker</th>
+      <th>Tiebreak Score</th>
+      <th>Opponent's Tiebreak Score</th>
+    </tr>
+    {% for pro in in_progress_data %}
+    <tr>
+      <td class="in-progress-data"><a href="{{ pro.url }}" target="_tab">{{ pro.name }}</a></td><td>{{ pro.rules }}</td><td>{{ pro.is_rated }}</td><td>{{ pro.total_players }}</td><td>{{ pro.current_round }}</td><td>{{ pro.user_advance_count }}</td><td>{{ pro.current_score }}</td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    {% endfor %}
+  </table>
+  <table id = "if-registered" style="display:none">
+    <tr>
+      <th>Name</th>
+      <th>Rules</th>
+      <th>Rated/Unrated</th>
+    </tr>
+    {% for datum in registered_data %}
+    <tr>
+    <td class="registered_data"><a href="{{ datum.url }}">{{ datum.name }}</a></td><td>{{ datum.rules }}</td><td>{{ datum.is_rated }}</td>
+  </tr>
+    {% endfor %}
+
+  </table>
+{% endblock %}
